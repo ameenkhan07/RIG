@@ -23,23 +23,24 @@ def allowed_file(filename):
 def admindisplay():
     return render_template('admin.html')
 
+
 @app.route('/registercomplaint', methods=['GET', 'POST'])
 def register_complaint():
     if request.method == 'POST':
         file = request.files['file']
         form = request.form
 
-        conn = sqlite3.connect('site.db')
-        conn.execute("""INSERT INTO complaints VALUES(?,?,?,?,?,?,?)""", (form['district'], form['block'], form['name'], form['address'], form['complaint'], form['product'], form['email']))
-        conn.commit()
-        conn.close()
-
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            conn = sqlite3.connect('site.db')
+            conn.execute("""INSERT INTO complaints VALUES(?,?,?,?,?,?,?,?)""", (form['district'], form['block'], form['name'], form['address'], form['complaint'], form['product'], form['email'], os.path.join(app.config['UPLOAD_FOLDER'], filename)))
+            conn.commit()
+            conn.close()
             return redirect(url_for('register_complaint'))
     else:
-        return render_template('registercomplaint/index.html')
+        return render_template('index.html')
+
 
 @app.route("/map", methods=['GET'])
 def map():
@@ -97,6 +98,21 @@ def map():
         newer_data.append(i)
 
     return render_template('map.html', addresses=new_data)
+
+@app.route("/view/<query>")
+def view(query):
+    connection = sqlite3.connect('site.db')
+    cursor = connection.execute("""SELECT img, district, block, complaint FROM complaints WHERE product=?""", (query, ))
+
+    retval = []
+
+    for row in cursor:
+        retval.append({'img': row[0], 'district': row[1], 'block': row[2], 'complaint': row[3]})
+
+    connection.close()
+    print retval
+    return "Hello"
+
 
 @app.route("/", methods=['GET'])
 def root():
