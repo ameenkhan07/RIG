@@ -102,9 +102,14 @@ def map():
 @app.route("/view/<query>")
 def view(query):
     connection = sqlite3.connect('site.db')
-    cursor = connection.execute("""SELECT img, district, block, complaint FROM complaints WHERE product=?""", (query, ))
+    cursor = connection.execute("""SELECT img, district, block, complaint FROM complaints WHERE product LIKE ? COLLATE NOCASE""", ('%' + query + '%',))
 
     retval = []
+
+    for row in cursor:
+        retval.append({'img': row[0], 'district': row[1], 'block': row[2], 'complaint': row[3]})
+
+    connection = connection.execute("""SELECT img, district, block, complaint FROM complaints WHERE district LIKE ? COLLATE NOCASE""", ( '%' + query + '%', ))
 
     for row in cursor:
         retval.append({'img': row[0], 'district': row[1], 'block': row[2], 'complaint': row[3]})
@@ -117,6 +122,49 @@ def view(query):
 @app.route("/", methods=['GET'])
 def root():
     return render_template('index.html')
+
+@app.route('/company', methods=['GET','POST'])
+def company_login():
+
+    if request.method == 'POST':
+        connection = sqlite3.connect('site.db');
+        cursor = connection.execute("""SELECT username, password FROM company WHERE username=? AND password=?""", (request.form['username'], request.form['pass']))
+        
+        if cursor.fetchone() != None:
+            connection.close()
+            return render_template('companyhome.html', username=request.form['username'])
+        else:
+            connection.close()
+            return """
+            company login
+            <form action="company" method="post">
+                <input type="text" name='username' placeholer='username'>
+                <input type="password" name='pass' placeholer='password'>           
+                <input type='submit' value='submit'> 
+            </form>
+            """    
+    else:
+        return """
+        admin login
+        <form action="company" method="post">
+            <input type="text" name='username' placeholer='username'>
+            <input type="password" name='pass' placeholer='password'>           
+            <input type='submit' value='submit'> 
+        </form>
+        """
+
+@app.route('/companyhome/<username>')
+def company_home(username):
+    connection = sqlite3.connect('site.db')
+    cursor = connection.execute("""SELECT img, district, block, complaint FROM complaints WHERE product LIKE ? COLLATE NOCASE""", ('%' + username + '%',))
+    
+    retval = []
+
+    for row in cursor:
+        retval.append({'img': row[0], 'district': row[1], 'block': row[2], 'complaint': row[3]})
+
+    print retval
+    return retval
 
 
 if __name__ == "__main__":
