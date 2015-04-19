@@ -24,27 +24,24 @@
 		<!-- CSS
 		================================================== -->
 		<!-- Fontawesome Icon font -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="static/css/font-awesome.min.css">
 		<!-- Twitter Bootstrap css -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
 		<!-- jquery.fancybox  -->
-        <link rel="stylesheet" href="css/jquery.fancybox.css">
+        <link rel="stylesheet" href="static/css/jquery.fancybox.css">
 		<!-- animate -->
-        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="static/css/animate.css">
 		<!-- Main Stylesheet -->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="static/css/main.css">
 		<!-- media-queries -->
-        <link rel="stylesheet" href="css/media-queries.css">
+        <link rel="stylesheet" href="static/css/media-queries.css">
 
 		<!-- Modernizer Script for old Browsers -->
-        <script src="js/modernizr-2.6.2.min.js"></script>
+        <script src="static/js/modernizr-2.6.2.min.js"></script>
 
     </head>
 
     <body id="body">
-
-        <a style="position:absolute;top:3%;right:3%;z-index:10000;color: #fff;font-size:16px;font-weight:200;font-color:white" href="map.html">Maps</a></li>
-
 
         <!--
         Fixed Navigation
@@ -73,6 +70,7 @@
                     <ul id="nav" class="nav navbar-nav">
                         <li class="current"><a href="#body">Home</a></li>
                         <li><a href="#contact">Complaint</a></li>
+                        <li><a href="map">Map</a></li>
                     </ul>
                 </nav>
 				<!-- /main nav -->
@@ -97,10 +95,10 @@
 				<div class="carousel-inner" role="listbox">
 
 					<!-- single slide -->
-					<div class="item active" style="background-image: url(img/banner.jpg);">
+					<div class="item active" style="background-image: url(static/img/banner.jpg);">
 						<div class="carousel-caption">
 							<h2 data-wow-duration="700ms" data-wow-delay="250ms" class="wow bounceInDown animated">The<span> RIG</span>!</h2>
-							<h3 data-wow-duration="300ms" class="wow slideInLeft animated">COUNTER THE  <span class="color">FUCKING</span> COUNTERFEITANCE</h3>
+							<h3 data-wow-duration="300ms" class="wow slideInLeft animated">COUNTER<span class="color">FEITANCE</span></h3>
 							<p data-wow-duration="300ms" class="wow slideInRight animated">mind the language</p>
 
 						</div>
@@ -170,7 +168,7 @@
 									</div>
 								</div>
                                 <div class="button">
-                                    <button name="image" id="image" placeholder="IMAGE" class="form-control" required>Image</button>
+                                    <input name="file" type="file" required>
                                 </div>
                                 <div class="input-group">
 									<input type="submit" id="form-submit" class="pull-right" value="SUBMIT">
@@ -185,7 +183,7 @@
 			</div>
 
 			<!-- Google map -->
-			<div id="map_canvas" class="wow bounceInDown animated" data-wow-duration="250ms"></div>
+			<!-- <div id="map_canvas" class="wow bounceInDown animated" data-wow-duration="250ms"></div> -->
 			<!-- End Google map -->
 
 		</section>
@@ -213,30 +211,30 @@
 		<!-- Essential jQuery Plugins
 		================================================== -->
 		<!-- Main jQuery -->
-        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="static/js/jquery-1.11.1.min.js"></script>
 		<!-- Single Page Nav -->
-        <script src="js/jquery.singlePageNav.min.js"></script>
+        <script src="static/js/jquery.singlePageNav.min.js"></script>
 		<!-- Twitter Bootstrap -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
 		<!-- jquery.fancybox.pack -->
-        <script src="js/jquery.fancybox.pack.js"></script>
+        <script src="static/js/jquery.fancybox.pack.js"></script>
 		<!-- jquery.mixitup.min -->
-        <script src="js/jquery.mixitup.min.js"></script>
+        <script src="static/js/jquery.mixitup.min.js"></script>
 		<!-- jquery.parallax -->
-        <script src="js/jquery.parallax-1.1.3.js"></script>
+        <script src="static/js/jquery.parallax-1.1.3.js"></script>
 		<!-- jquery.countTo -->
-        <script src="js/jquery-countTo.js"></script>
+        <script src="static/js/jquery-countTo.js"></script>
 		<!-- jquery.appear -->
-        <script src="js/jquery.appear.js"></script>
+        <script src="static/js/jquery.appear.js"></script>
 		<!-- Contact form validation -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
 		<!-- Google Map -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<!-- jquery easing -->
-        <script src="js/jquery.easing.min.js"></script>
+        <script src="static/js/jquery.easing.min.js"></script>
 		<!-- jquery easing -->
-        <script src="js/wow.min.js"></script>
+        <script src="static/js/wow.min.js"></script>
 		<script>
 			var wow = new WOW ({
 				boxClass:     'wow',      // animated element css class (default is wow)
@@ -249,7 +247,7 @@
 			wow.init();
 		</script>
 		<!-- Custom Functions -->
-        <script src="js/custom.js"></script>
+        <script src="static/js/custom.js"></script>
 
 		<script type="text/javascript">
 			$(function(){
