@@ -60,7 +60,7 @@ def map():
                                 districts.append({"district": worksheet.cell_value(curr_row,7), "block": worksheet.cell_value(curr_row,8), "industry": worksheet.cell_value(curr_row,9)})
                                 break
 
-    print(districts[0]['district'])
+    # print(districts[0]['district'])
 
     new_data = {}
 
@@ -101,6 +101,16 @@ def map():
 @app.route("/", methods=['GET'])
 def root():
     return render_template('index.html')
+
+
+@app.route("/consumerfeed", methods=['GET'])
+def feed():
+    return render_template('feeds.html')
+
+
+@app.route("/userfeed", methods=['GET'])
+def userfeed():
+    return render_template('userfeed.html')
 
 
 if __name__ == "__main__":
